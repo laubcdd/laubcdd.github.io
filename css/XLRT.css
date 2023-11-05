@@ -5,11 +5,11 @@
         padding: 15px 30px;
        cursor: pointer;
         font-size: 25px
-      }  
+      }     
       .image {
         width: 135%;
         }
-      ul {
+        .ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -30,6 +30,6 @@
           }
           
           li a:hover:not(.active) {
-            background-color: #656;
+            background-color: #555;
             color: white;
           } 
