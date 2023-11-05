@@ -1,0 +1,12 @@
+.image {
+    width: 135%;
+    }
+
+    .XLRT {
+        background-color:#114514;
+        border: none;
+        color: white;
+        padding: 15px 30px;
+       cursor: pointer;
+        font-size: 25px
+      }  
