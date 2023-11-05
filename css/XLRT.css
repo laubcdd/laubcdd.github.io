@@ -22,15 +22,18 @@
             display: block;
             color: #000;
             padding: 8px 16px;
+            list-style-type: none;
             text-decoration: none;
           }
           
           li a.active {
             background-color: #04AA6D;
             color: white;
+            list-style-type: none;
           }
           
           li a:hover:not(.active) {
             background-color: #555;
             color: white;
+            list-style-type: none;
           } 
