@@ -15,9 +15,14 @@
     font-size: 50px;
 
   }
-  
+  /*维护窗口Style*/
 
   
   .maintenance-content {
     pointer-events: auto; 
   }
+/*內容格式*/
+  .untouch {
+    pointer-events: none;
+  }
+  /*确保无法控制页面*/
