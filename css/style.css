@@ -1,3 +1,25 @@
+.button {
+  border-radius: 4px;
+    background-color:#0d548e;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+   cursor: pointer;
+    font-size: 25px
+  }     
+/*普通按钮Sccript*/
+
+.button_sidenav {
+  border-radius: 4px;
+    background-color:#334;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+   cursor: pointer;
+    font-size: 25px
+  }     
+/*Unknown Script*/
+
 .dropbtn {
     background-color: #05ccd3;
     color: #464646;
@@ -23,17 +45,6 @@
     z-index: 1;
   }
     /*redir_pg button 列表格式*/
-
-  .button {
-    border-radius: 4px;
-      background-color:#0d548e;
-      border: none;
-      color: white;
-      padding: 15px 30px;
-     cursor: pointer;
-      font-size: 25px
-    }     
-
  
   .dropdown-content a {
     color: #194a8a;
@@ -49,63 +60,119 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  /*Main Button Interact*/
-
-  /*
 
 
 
-
-    dropdown:hover .dropbtn {
-    background-color: #259655;
-  }
-  */
-  
-
-
-
-  ul {
-
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #334;
-    position: fixed;
-    top: 0;
-    width: 100%
-  }
-  /*导航列底色格式*/
-  
-  li {
-    float: left;
-  }
-  /*导航列默认向左*/
-
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  /*按钮文字颜色*/
-  
-  li a:hover:not(.active) {
-    background-color: #111;
-  }
-  /*非当前页面底色*/
-
+  /*本Script为共用导航列！*/
   .active {
-    background-color: #114514;
+    background-color: #2468d6;
   }
   /*当前页面底色*/
 
-  .Redir{
-  color: #464646;
-  padding: 20px;
-  font-size: 30px;
-  border: none;
-  cursor: pointer;
+
+
+
+  /*本导航列为新版导航列！*/
+  .sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #12a6dcc9; /* Color*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #4f4e4e;
+    display: block;
+    transition: 0.3s;
+  }
+    /*导航列字颜色*/
+
+
+  .sidenav a:hover {
+    color: #212121;
+  }
+  /*导航列字(互动)颜色*/
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  /*Main Button Interact*/
+
+
+  /*本导航列为旧横向导航列！*/
+
+ul {
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #334;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+/*导航列底色格式*/
+
+li {
+  float: left;
+}
+/*导航列默认向左*/
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/*按钮文字颜色*/
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+/*非当前页面底色*/
+
+
+.Redir{
+color: #464646;
+padding: 20px;
+font-size: 30px;
+border: none;
+cursor: pointer;
 }
 /*点击按钮底色*/
+
+
+
+
+
+  
+
+  
+  
+
+
+
+ 
