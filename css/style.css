@@ -21,7 +21,7 @@
 /*Unknown Script*/
 
 .dropbtn {
-    background-color: #05ccd3;
+    background-color: #555;
     color: #464646;
     padding: 20px;
     font-size: 18px;
@@ -47,7 +47,7 @@
     /*redir_pg button 列表格式*/
  
   .dropdown-content a {
-    color: #194a8a;
+    color: #16dde4;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
