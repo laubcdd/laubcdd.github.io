@@ -20,6 +20,8 @@
   
   .maintenance-content {
     pointer-events: auto; 
+    justify-content: center;
+    font-size: 35px;
   }
 /*內容格式*/
   .untouch {

@@ -21,9 +21,10 @@
 /*Unknown Script*/
 
 .dropbtn {
-    background-color: #16dde4;
-    color: #464646;
-    padding: 20px;
+  border-radius: 4px;
+    background-color: #0d548e;
+    color: #e5e5e5;
+    padding: 15px 30px;
     font-size: 18px;
     border: none;
     cursor: pointer;
@@ -39,7 +40,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #16dde4;
+    background-color: #0d548e;
     min-width: 145px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
