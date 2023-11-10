@@ -5,9 +5,23 @@
     color: white;
     padding: 15px 30px;
    cursor: pointer;
-    font-size: 25px
+    font-size: 25px;
   }     
 /*普通按钮Sccript*/
+
+.button_disabled {
+  border-radius: 4px;
+    background-color:#707070;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+   cursor: pointer;
+    font-size: 25px;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+  }     
+/*普通按钮DISABLED Sccript*/
 
 .button_sidenav {
   border-radius: 4px;
@@ -16,7 +30,7 @@
     color: white;
     padding: 12px 30px;
    cursor: pointer;
-    font-size: 25px
+    font-size: 25px;
   }     
 /*Unknown Script*/
 
