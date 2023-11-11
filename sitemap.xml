@@ -5,7 +5,7 @@
    <url>
       <loc>http://www.laubcdd.github.io/index.html</loc>
 
-      <lastmod>1970-01-01</lastmod>
+      <lastmod>2023-11-11</lastmod>
 
       <changefreq>daily</changefreq>
 
@@ -15,7 +15,7 @@
    <url>
       <loc>http://www.laubcdd.github.io/info.html</loc>
 
-      <lastmod>1970-01-01</lastmod>
+      <lastmod>2023-11-11</lastmod>
 
       <changefreq>daily</changefreq>
 
@@ -25,7 +25,7 @@
       <url>
       <loc>http://www.laubcdd.github.io/redirect_page.html</loc>
 
-      <lastmod>1970-01-01</lastmod>
+      <lastmod>2023-11-11</lastmod>
 
       <changefreq>daily</changefreq>
 
@@ -37,7 +37,7 @@
       <url>
       <loc>http://www.laubcdd.github.io/useless_software.html</loc>
 
-      <lastmod>1970-01-01</lastmod>
+      <lastmod>2023-11-11</lastmod>
 
       <changefreq>daily</changefreq>
 
@@ -48,10 +48,20 @@
    <url>
       <loc>http://www.laubcdd.github.io/XLRT_rail_map.html</loc>
 
-      <lastmod>1970-01-01</lastmod>
+      <lastmod>2023-11-11</lastmod>
 
       <changefreq>daily</changefreq>
 
       <priority>0.6</priority>
+   </url>
+   
+      <url>
+      <loc>http://www.laubcdd.github.io/rail_map_down.html</loc>
+
+      <lastmod>2023-11-11</lastmod>
+
+      <changefreq>daily</changefreq>
+
+      <priority>1.0</priority>
    </url>
 </urlset> 
