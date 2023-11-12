@@ -25,13 +25,6 @@
   }
 /*內容格式*/
 
-.maintenance-homo {
-  pointer-events: auto; 
-  justify-content: center;
-  font-size: 35px;
-}
-/*主页超链接格式*/
-
   .untouch {
     pointer-events: none;
   }
