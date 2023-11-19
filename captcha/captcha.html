@@ -4,16 +4,23 @@
 <script language="javascript" type="text/javascript">
     var randNum = Math.floor(Math.random()*(4-1)+1);
 
+    document.write(You will be redirect to CAPTCHA:)
     document.write(randNum) ;
 
     if (randNum == 1)
-    window.location.replace("/captcha/captcha1.html");
-    
+    setTimeout(function(){
+    window.location.href="/captcha/captcha1.html";
+    },5000);
+
     if (randNum == 2)
-    window.location.replace("/captcha/captcha2.html");
+    setTimeout(function(){
+    window.location.href="/captcha/captcha2.html";
+    },5000);
     
     if (randNum == 3)
-    window.location.replace("/captcha/captcha3.html");
+    setTimeout(function(){
+    window.location.href="/captcha/captcha3.html";
+    },5000);
     
 </script>
 
