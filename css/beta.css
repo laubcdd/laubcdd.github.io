@@ -1,4 +1,83 @@
+.home .change-page {
+height: 40px;
+display: flex;
+padding: 0px calc((100% - 1160px) / 2);
+margin-bottom: 20px;
+color: rgb(18, 24, 58);
+}
 
+.home .change-page .p-page {
+display: flex;
+flex-basis: 0px;
+justify-content: flex-start;
+align-items: center;
+flex-grow: 1;
+}
+
+.home .change-page .p-page a {
+color: rgb(18, 24, 58);
+text-decoration: none;
+}
+
+.home .change-page .p-page a .previous {
+width: 120px;
+height: 40px;
+text-align: center;
+line-height: 40px;
+border-radius: 10px;
+color: rgb(137, 143, 160);
+margin-left: 18px;
+box-shadow: rgba(50, 50, 50, 0.1) 0px 20px 40px 0px;
+transition: margin-top 0.5s ease 0s;
+}
+
+.home .change-page .p-page a .previous:hover {
+margin-top: -15px;
+cursor: pointer;
+}
+
+.home .change-page .n-page {
+display: flex;
+flex-basis: 0px;
+justify-content: flex-end;
+align-items: center;
+flex-grow: 1;
+}
+
+.home .change-page .n-page a {
+color: rgb(18, 24, 58);
+text-decoration: none;
+}
+
+.home .change-page .n-page a .next {
+width: 120px;
+height: 40px;
+text-align: center;
+line-height: 40px;
+border-radius: 10px;
+margin-right: 18px;
+color: rgb(137, 143, 160);
+box-shadow: rgba(50, 50, 50, 0.1) 0px 20px 40px 0px;
+transition: margin-top 0.5s ease 0s;
+}
+
+.home .change-page .n-page a .next:hover {
+margin-top: -15px;
+cursor: pointer;
+}
+
+.links-content {
+    display: flex;
+    max-width: 1160px;
+    margin: 0px auto;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    flex-direction: column;
+    }
+    
+    /*change-page END*/
+    
+    
 .home .main {
     display: flex;
     flex-grow: 1;
