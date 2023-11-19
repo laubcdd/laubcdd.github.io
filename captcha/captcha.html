@@ -9,13 +9,7 @@ var all_cap = [
 ];
 var Cap = all_cap[Math.floor(Math.random()*all_cap.length)];
 
-  document.write(Cap) ;
-  
-    // 以下方式直接跳转（二选一）
-    window.location.href = '(Cap)';
-    
-    // 五秒以后再跳转（二选一）
-    setTimeout("javascript:location.href='(Cap)'", 500);
+  document.write(<a href="Cap">Click here to redirect!</a>) ;
 </script>
 
 </body>
