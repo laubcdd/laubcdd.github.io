@@ -2,14 +2,19 @@
 <body>
 
 <script language="javascript" type="text/javascript">
-var all_cap = [
-'/captcha/captcha1.html',
-'/captcha/captcha2.html',
-'/captcha/captcha3.html'
-];
-var Cap = all_cap[Math.floor(Math.random()*all_cap.length)];
+    var randNum = Math.floor(Math.random()*(3-1)+1);
 
-  document.write(<a href="Cap">Click here to redirect!</a>) ;
+    document.write(randNum) ;
+
+    if (randNum == 1)
+    window.location.replace("/captcha/captcha1.html");
+    
+    if (randNum == 2)
+    window.location.replace("/captcha/captcha2.html");
+    
+    if (randNum == 3)
+    window.location.replace("/captcha/captcha3.html");
+    
 </script>
 
 </body>
