@@ -1,0 +1,35 @@
+<html>
+    <head>
+    <title>CAPTCHA</title>
+    <!--网站显示标题-->
+    
+    <link rel="icon" href="/res/favicon.jpg">
+    <!--网站显示图标--> 
+    </head>
+<body>
+
+
+<script>
+    var randNum = Math.floor(Math.random()*(4-1)+1);
+
+    document.write(randNum) ;
+
+    if (randNum == 1)
+    setTimeout(function(){
+    window.location.href="https://laubcdd.github.io/captcha/captcha1.html";
+    },1500);
+
+    if (randNum == 2)
+    setTimeout(function(){
+    window.location.href="https://laubcdd.github.io/captcha/captcha2.html";
+    },1500);
+    
+    if (randNum == 3)
+    setTimeout(function(){
+    window.location.href="https://laubcdd.github.io/captcha/captcha3.html";
+    },1500);
+    
+</script>
+
+</body>
+</html>
