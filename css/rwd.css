@@ -1,6 +1,0 @@
-/*for mobile phones*/
-[class*="col-"]{
-    width: 100%;
-}
-
-@media only screen
