@@ -16,43 +16,110 @@
     <link href='/css/noto_sans.css' rel='stylesheet'>
     <!--网站显示字体-->
 
-    
-    </head>
-    <ul>
-      <li><button class="button_sidenav"onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
-      <li><a href="/index.html">主页</a></li>
-      <li><a href="/xlrt/XLRT_rail_map.html">路线图</a></li>
-      <li><a href="/xlrt/XLRT_server.html">小连服务器</a></li>
-      <li><a href="/info.html">小连资讯</a></li>
-      <li><a class="active" href="/redirect_page.html">重定向页面</a></li>
-    </ul>
-                  <!--新版导航列-->
-                  <script src="/js/sidenav.js" ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                  <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                  <a href="/index.html">Homo</a>
-                  <a href="/xlrt/XLRT_rail_map.html">Rail Map</a>
-                  <a href="/xlrt/XLRT_server.html">Xiaolian Server</a>
-                  <a href="/info.html">Xiaolian Info</a>
-                  <a class="active" href="/redirect_page.html">Redirect Page</a>
-                  </div>
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /*
+    .menu {
+      float: left;
+      width: 20%;
+    }
+    .menuitem {
+      padding: 8px;
+      margin-top: 7px;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    */
+    
+    .main {
+      float: left;
+      width: 95%;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+    /*
+    .right {
+      background-color: lightblue;
+      float: left;
+      width: 20%;
+      padding: 10px 15px;
+      margin-top: 7px;
+    }
+    */
+    
+    @media only screen and (max-width:800px) {
+      /* For tablets: */
+      .main {
+        width: 95%;
+        padding: 0;
+      }
+      /*
+      .right {
+        width: 100%;
+      }
+      */
+    }
+    @media only screen and (max-width:500px) {
+      /* For mobile phones: */
+      .menu, .main, .right {
+        width: 95%;
+      }
+    }
+    /* show it on devices with max of 767 px and lower*/
+          @media (max-width: 650px) {
+            .hidden-mobile {
+              display: none;
+            }
+          }
+          @media (min-width: 650px) {
+            .hidden-pc {
+              display: none;
+            }
+          }
+    </style>
+    </head>  
+    <body>
+    
+    <div style="overflow:auto">
+        <ul>
+            <li class="hidden-pc"><button class="button_sidenav"onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
+            <li class="hidden-mobile"><a href="/index.html">主页</a></li>
+            <li class="hidden-mobile"><a href="/xlrt/XLRT_rail_map.html">路线图</a></li>
+            <li class="hidden-mobile"><a href="/xlrt/XLRT_server.html">小连服务器</a></li>
+            <li class="hidden-mobile"><a href="/info.html">小连资讯</a></li>
+            <li class="hidden-mobile"><a class="active" href="/redirect_page.html">重定向页面</a></li>
+          </ul>
+          <!--新版导航列-->
+
+          <script src="/js/sidenav.js" ></script>
+          
+          <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="/index.html">Homo</a>
+          <a href="/xlrt/XLRT_rail_map.html">Rail Map</a>
+          <a href="/xlrt/XLRT_server.html">Xiaolian Server</a>
+          <a href="/info.html">Xiaolian Info</a>
+          <a class="active" href="/redirect_page.html">Redirect Page</a>
+          </div>
         <div style="margin-top:75px;"></div>
             <!--导航占位空间-->
 
-        <br>
-        <h1 class="redir">这是一个重定向页面，请点击下面的按钮前往各页面</h1>
-        <!--Title-->
-        <div class="dropdown">
-            <button class="dropbtn">Xiao Lian</button>
-            <div class="dropdown-content">
-            <a href="/xlrt/XLRT_rail_map.html">Rail Map</a>
-            <a href="/info.html">Info</a>
-            <a href="#">Under Consturction</a>
-            </div>
-          </div>
-          </div>
-          <!--Xiaolian Button-->
+            
+            <div class="main">
+              <h1 class="redir">这是一个重定向页面，请点击下面的按钮前往各页面</h1>
+              <!--Title-->
+              <div class="dropdown">
+                  <button class="dropbtn">Xiao Lian</button>
+                  <div class="dropdown-content">
+                  <a href="/xlrt/XLRT_rail_map.html">Rail Map</a>
+                  <a href="/info.html">Info</a>
+                  <a href="#">Under Consturction</a>
+                  </div></div></div>
+                <!--Xiaolian Button-->
           
 
 
