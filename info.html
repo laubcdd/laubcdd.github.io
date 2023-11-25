@@ -15,17 +15,80 @@
   <link href='/css/noto_sans.css' rel='stylesheet'>
   <!--网站显示字体-->
 
-  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /*
+    .menu {
+      float: left;
+      width: 20%;
+    }
+    .menuitem {
+      padding: 8px;
+      margin-top: 7px;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    */
+    
+    .main {
+      float: left;
+      width: 95%;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+    /*
+    .right {
+      background-color: lightblue;
+      float: left;
+      width: 20%;
+      padding: 10px 15px;
+      margin-top: 7px;
+    }
+    */
+    
+    @media only screen and (max-width:800px) {
+      /* For tablets: */
+      .main {
+        width: 95%;
+        padding: 0;
+      }
+      /*
+      .right {
+        width: 100%;
+      }
+      */
+    }
+    @media only screen and (max-width:500px) {
+      /* For mobile phones: */
+      .menu, .main, .right {
+        width: 95%;
+      }
+    }
+    /* show it on devices with max of 767 px and lower*/
+          @media (max-width: 650px) {
+            .hidden-mobile {
+              display: none;
+            }
+          }
+          @media (min-width: 650px) {
+            .hidden-pc {
+              display: none;
+            }
+          }
+    </style>
   </head>
   <body>
+    <div style="overflow:auto">
     <!--横向导航列-->
     <ul>
-      <li><button class="button_sidenav"onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
-      <li><a href="/index.html">主页</a></li>
-      <li><a href="/xlrt/XLRT_rail_map.html">路线图</a></li>
-      <li><a href="/xlrt/XLRT_server.html">小连服务器</a></li>
-      <li><a class="active" href="/info.html">小连资讯</a></li>
-      <li><a href="/redirect_page.html">重定向页面</a></li>
+      <li class="hidden-pc"><button class="button_sidenav"onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
+      <li class="hidden-mobile"><a href="/index.html">主页</a></li>
+      <li class="hidden-mobile"><a href="/xlrt/XLRT_rail_map.html">路线图</a></li>
+      <li class="hidden-mobile"><a href="/xlrt/XLRT_server.html">小连服务器</a></li>
+      <li class="hidden-mobile"><a class="active" href="/info.html">小连资讯</a></li>
+      <li class="hidden-mobile"><a href="/redirect_page.html">重定向页面</a></li>
     </ul>
                   <!--新版导航列-->
                   <script src="/js/sidenav.js" ></script>
@@ -42,13 +105,12 @@
 
       <div style="margin-top:75px;"></div>
         <!--导航占位空间-->
-
-
+        <div class="main">
           <h1>小连放送资讯中站</h1>
           <p>https://www.lavaver.github.io</p>
-          <iframe src="https://lavaver.github.io/" width="100%" height="100%" title="小连放送资讯站" frameborder="0"></iframe>
+          <iframe src="https://lavaver.github.io/" class="hidden-mobile" width="100%" height="100%" title="小连放送资讯站" frameborder="0"></iframe>
           <!--资讯站窗口-->
-
+          <h1 class="hidden-pc">Your device doesnot support this size.</h1>
 
             
     

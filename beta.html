@@ -14,12 +14,81 @@
 <script src="/js/width.js"></script>
         <script src="/js/index.js"></script>
         <!--网页基本JS-->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        /*
+        .menu {
+          float: left;
+          width: 20%;
+        }
+        .menuitem {
+          padding: 8px;
+          margin-top: 7px;
+          border-bottom: 1px solid #f1f1f1;
+        }
+        */
+        
+        .main {
+          float: left;
+          width: 95%;
+          padding: 0 20px;
+          overflow: hidden;
+        }
+        /*
+        .right {
+          background-color: lightblue;
+          float: left;
+          width: 20%;
+          padding: 10px 15px;
+          margin-top: 7px;
+        }
+        */
+        
+        @media only screen and (max-width:800px) {
+          /* For tablets: */
+          .main {
+            width: 95%;
+            padding: 0;
+          }
+          /*
+          .right {
+            width: 100%;
+          }
+          */
+        }
+        @media only screen and (max-width:500px) {
+          /* For mobile phones: */
+          .menu, .main, .right {
+            width: 95%;
+          }
+        }
+        /* show it on devices with max of 767 px and lower*/
+              @media (max-width: 650px) {
+                .hidden-mobile {
+                  display: none;
+                }
+              }
+              @media (min-width: 650px) {
+                .hidden-pc {
+                  display: none;
+                }
+              }
+        </style>
     </head>
     <body>
-<div class="header">
-    <div class="header-top" id="header-top">
-      <div class="h-left">
-        <a href="/index.html">
+      <div style="overflow:auto">
+         <div class="main">
+
+         <div class="header">
+          <div class="header-top" id="header-top">
+          <div class="h-left">
+          <a href="/index.html">
           <img src="/res/favicon.jpg"></img>
         </a>
       </div>
@@ -48,40 +117,39 @@
               </div>   
             </ul>
 
-<!--
-            <div class="h-right-close">
-            <img src="/res/favicon.jpg" alt="114514"></img>
-            </div>
+
+
           </div>
         </div>
+        <!--
         <div class="sidebar">
-          <!--<div class="topo">
+          <div class="topo">
               <h2>Laubcdd</h2>
-          </div>-->
-          <ul>
+          </div>
+          <ul class="hidden-pc">
               
               <li>
-                  <a href="https://lavaver.github.io/">首頁</a>
+                  <a href="#">首頁</a>
               </li>
               
               <li>
-                  <a href="https://lavaver.github.io/archives">全部資訊</a>
+                  <a href="#">全部資訊</a>
               </li>
               
               <li>
-                  <a href="https://lavaver.github.io/categories">全部類別</a>
+                  <a href="#">全部類別</a>
               </li>
               
               <li>
-                  <a href="https://lavaver.github.io/tags">全部標籤</a>
+                  <a href="#">全部標籤</a>
               </li>
               
               <li>
-                  <a href="https://lavaver.github.io/links">友情連結</a>
+                  <a href="#">友情連結</a>
               </li>
               
               <li>
-                  <a href="https://lavaver.github.io/about">關於本站</a>
+                  <a href="#">關於本站</a>
               </li>
               
           </ul>
@@ -96,7 +164,7 @@
                 <img src="/res/favicon.jpg" alt="114514">
             </span>
    
-            <h2>BETABETABETA</h2>
+            <h2>本站为LAUBCDD的官方网站</h2>
         </div>
     </div>
       <div class="main">
@@ -110,6 +178,30 @@
                   </h2>
                   
                   <img src="/bg/cover1.jpg" alt="Cover">
+                  
+                </a>
+                <div class="post-card-meat">
+                  <div class="meat-info">
+                    <div class="info-auth">
+                        <a href="#">
+                          啥都没有~
+                        </a>
+                    </div>
+                    <div class="info-data">
+                      2023-11-07
+                    </div>
+                  </div>
+                  <div class="meat-type"></div>
+                </div>
+              </div>
+
+              <div class="post-card-display">
+                <a href="#">
+                  <h2 class="post-card-title">
+                    Index
+                  </h2>
+                  
+                  <img src="/bg/cover2.jpg" alt="Cover">
                   
                 </a>
                 <div class="post-card-meat">
@@ -303,9 +395,7 @@
       <div class="change-page">
         
             
-      </div>
-      
-    </div>
+      </div></div></div></div></div></div>
 
 </body>
 </html>
