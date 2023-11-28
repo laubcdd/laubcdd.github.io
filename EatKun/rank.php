@@ -78,7 +78,7 @@ if ($RankingType == 'all') {
             <a class="nav-link <?php echo $RankingType == 'all' ? "active" : ""; ?>" href="?type=all"><?php echo $i18n['all-ranking']; ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://laubcdd.github.io/"><?php echo $i18n['repo']; ?></a>
+            <a class="nav-link" href="https://laubcdd.github.io/">Go to index</a>
           </li>
         </ul>
         <form class="d-flex text-nowrap" action="" onsubmit="return func()">
