@@ -40,6 +40,7 @@
                 <button type="button" class="btn btn-secondary btn-lg" id="replay" onclick="replayBtn()" data-i18n="again">AGAIN-I18N</button>
                 <button type="button" class="btn btn-secondary btn-lg" onclick="window.location.reload()" data-i18n="home">HOME-I18N</button>
                 <button type="button" class="btn btn-secondary btn-lg" onclick="goRank()" data-i18n="rank">RANK-I18N</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='https://laubcdd.github.io/'" data-i18n="index">INDEX-I18N</button>
             </div>
     </div>
     </div>
