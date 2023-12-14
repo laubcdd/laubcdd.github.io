@@ -1,0 +1,43 @@
+.dropbtn {
+    border-radius: 4px;
+      background-color: #0d548e;
+      color: #e5e5e5;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+    }
+    /*redir_pg button 格式*/
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    /*redir_pg button 列表內容*/
+  
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #0d548e;
+      min-width: 145px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+      /*redir_pg button 列表格式*/
+   
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    /*redir_pg文字格式*/
+  
+        .dropdown-content a:hover {background-color: #c6c6c6}
+    /*Button list button interact*/
+  
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  
+  
