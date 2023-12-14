@@ -48,7 +48,7 @@ function ready ( fn ) {
 ready(contentMove);
 
 // 引入indexNowHandler函数  
-const indexNowHandler = require('./lib/indexnow');  
+//const indexNowHandler = require('./lib/indexnow');  
   
 // 调用indexNowHandler函数  
-indexNowHandler(hexo);
+//indexNowHandler(TRASH);

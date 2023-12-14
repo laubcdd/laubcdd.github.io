@@ -1,0 +1,21 @@
+https://ttsmaker.com/zh-hk Player:1513
+https://ttsmp3.com/ Player:US Eng / Mathew
+山峪口车辆段站到了((⏱️=750))可换乘一号线((⏱️=800))这是本次列车的终点站，请所有乘客下车((⏱️=500))感谢你选择小连轨道交通
+Next station is <break time="0.2s"/> Shanyukou Train Depot <break time="0.75s"/> The train terminate here.<break time="0.15s"/>Please exit from the train<break time="0.2s"/>Thank you for travelling on the Xiaolian Rail Transit
+欢迎乘坐小连轨道交通((⏱️=300))前方到站((⏱️=150))山峪口车辆段
+Welcome to travel on the XLRT. <break time="0.2s"/>Next station is <break time="0.2s"/> Shanyukou Train Depot
+前方到站((⏱️=150))山峪口车辆段((⏱️=300))
+Next station is <break time="0.2s"/> Shanyukou Train Depot
+兴庆站到了((⏱️=750))可换乘东铁线((⏱️=500))
+This station is <break time="0.2s"/> Xing Qing <break time="0.3s"/>{mtg.ogg}
+
+
+
+
+
+
+
+
+
+
+
