@@ -86,41 +86,42 @@
     </head>  
     <body>
     
-    <div style="overflow:auto">
+      <div style="overflow:auto">
+        <!--横向导航列-->
         <ul>
-            <li class="hidden-pc"><button class="button_sidenav"onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
-            <li class="hidden-mobile"><a href="https://laubcdd.github.io/index.html">主页</a></li>
-            <li class="hidden-mobile"><a href="https://laubcdd.github.io/xlrt/XLRT_rail_map.html">路线图</a></li>
-            <li class="hidden-mobile"><a href="https://laubcdd.github.io/xlrt/XLRT_server.html">小连服务器</a></li>
-            <li class="hidden-mobile"><a href="https://laubcdd.github.io/info.html">小连资讯</a></li>
-            <li class="hidden-mobile"><a class="active" href="https://laubcdd.github.io/redirect_page.html">重定向页面</a></li>
-          </ul>
-          <!--新版导航列-->
+          <li class="hidden-pc"><button class="button_sidenav"onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
+          <li class="hidden-mobile"><a href="https://laubcdd.github.io/index.html">主页</a></li>
+          <li class="hidden-mobile"><a href="https://laubcdd.github.io/xytr/XYTR_rail_map.html">西元路线图</a></li>
+          <li class="hidden-mobile"><a href="https://laubcdd.github.io/info.html">西元资讯</a></li>
+          <li class="hidden-mobile"><a class="active" href="https://laubcdd.github.io/redirect_page.html">重定向页面</a></li>
+          <!--class="active"-->
+        </ul>
+                   <!--新版导航列-->
+                   <script src="https://laubcdd.github.io/js/sidenav.js" ></script>
+      
+                   <div id="mySidenav" class="sidenav">
+                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                      <a href="https://laubcdd.github.io/index.html">Homo</a>
+                      <a href="https://laubcdd.github.io/xytr/XYTR_rail_map.html">Rail Map</a>
+                      <a href="https://laubcdd.github.io/info.html">Xiyuan Info</a>
+                      <a class="active" href="https://laubcdd.github.io/redirect_page.html">Redirect Page</a>
+                      <a href="https://laubcdd.github.io/empty.html">EMPTY PAGE</a>
+                      </div>
 
-          <script src="/js/sidenav.js" ></script>
-          
-          <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="https://laubcdd.github.io/index.html">Homo</a>
-          <a href="https://laubcdd.github.io/xlrt/XLRT_rail_map.html">Rail Map</a>
-          <a href="https://laubcdd.github.io/xlrt/XLRT_server.html">Xiaolian Server</a>
-          <a href="https://laubcdd.github.io/info.html">Xiaolian Info</a>
-          <a class="active" href="https://laubcdd.github.io/redirect_page.html">Redirect Page</a>
-          </div>
         <div style="margin-top:75px;"></div>
             <!--导航占位空间-->
 
-            
-            <div class="main">
+
               <h1 class="redir">这是一个重定向页面，请点击下面的按钮前往各页面</h1>
               <!--Title-->
               <div class="dropdown">
-                  <button class="dropbtn">Xiao Lian</button>
+                  <button class="dropbtn">XYTR</button>
                   <div class="dropdown-content">
-                  <a href="https://laubcdd.github.io/xlrt/XLRT_rail_map.html">Rail Map</a>
+                  <a href="https://laubcdd.github.io/xytr/XYTR_rail_map.html">Rail Map</a>
                   <a href="https://laubcdd.github.io/info.html">Info</a>
+                  <a href="https://laubcdd.github.io/xytr/XYTR_railtoll.html">XLTR收费</a>
                   <a href="https://laubcdd.github.io/#">Under Consturction</a>
-                  </div></div></div>
+                </div></div></div>
                 <!--Xiaolian Button-->
           
 
