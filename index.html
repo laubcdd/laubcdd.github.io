@@ -17,32 +17,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <div style="overflow:auto">
+        <!--横向导航列-->
+        <ul>
+            <li class="hidden-pc"><button class="button_sidenav" onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
+            <li class="hidden-mobile"><a class="active" href="https://laubcdd.github.io/index.html" class="active">主页</a></li>
+            <!--class="active"-->
+        </ul>
+        <!--新版导航列-->
+        <script src="https://laubcdd.github.io/js/sidenav.js"></script>
 
-    <div class="maintenance-overlay">
-        <p class="unselectable">本网站\分页维护中... This website\Page is maintenance...</p>
-        <div class="maintenance-content">
-            <button onclick="goback()" class="button"><img src="https://laubcdd.github.io/res/back.svg" width="25" height="25">返回上一个页面</button>
-            <p><a href="https://laubcdd.github.io/index.html">前往主页！ Go To Homo!</a></p>
-            <script src="/js/back.js"></script>
-            <script src="./js/latest-tips.js" id="114514"></script>
-            <script src="./js/tips.js"></script>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a class="active" href="https://laubcdd.github.io/index.html">Homo</a>
+        </div>
 
-            <div style="overflow:auto">
-                <!--横向导航列-->
-                <ul>
-                    <li class="hidden-pc"><button class="button_sidenav" onclick="openNav()">&#9776; 菜单</button>  <!--新版导航列按钮--></li>
-                    <li class="hidden-mobile"><a class="active" href="https://laubcdd.github.io/index.html" class="active">主页</a></li>
-                    <!--class="active"-->
-                </ul>
-                <!--新版导航列-->
-                <script src="https://laubcdd.github.io/js/sidenav.js"></script>
+        <div class="maintenance-overlay">
+            <p class="unselectable">本网站维护中... This website is maintenance...</p>
+            <div class="maintenance-content">
+                <script>
+                    function goback() {window.history.back();}
+                </script>
+                <button onclick="goback()" class="button">
 
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a class="active" href="https://laubcdd.github.io/index.html">Homo</a>
-                </div>
+
+                
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="20pt" height="20pt" viewBox="0 0 110.000000 105.000000" preserveAspectRatio="xMidYMid meet">
+    <g transform="translate(0.000000,105.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+        <path d="M292 887 l-142 -142 145 -145 145 -145 37 38 38 37 -85 85 -85 85 211 0 c206 0 211 -1 262 -26 85 -42 140 -125 149 -224 8 -85 -18 -152 -82 -216 -82 -82 -94 -84 -507 -84 l-348 0 0 -56 0 -55 383 3 382 3 67 32 c85 40 151 106 191 191 28 60 32 77 32 157 -1 70 -6 103 -24 147 -31 81 -106 159 -189 200 l-66 33 -213 3 c-117 2 -213 6 -213 10 0 4 30 37 67 74 l67 68 -34 35 c-19 19 -36 35 -40 35 -3 0 -69 -64 -148 -143z" />
+    </g>
+</svg>
+                
+                
+                返回上一个页面</button>
+                <p><a href="https://laubcdd.github.io/index.html">前往主页！ Go To Homo!</a></p>
+                <script src="/js/back.js"></script>
+
+                <script src="./js/tips.js"></script>
+
+
             </div>
-    </div>
+        </div>
 
 </body>
 </html>
