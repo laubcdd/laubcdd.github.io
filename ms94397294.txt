@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Microsoft 365 網域擁有權的驗證檔案放置於網站根目錄",
+  "Domain": "laubcdd.github.io",
+  "Id": "009ddaa7-5b2e-47b4-be47-c24f31d9a17a"
+}
