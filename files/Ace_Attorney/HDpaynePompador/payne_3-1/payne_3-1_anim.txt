@@ -1,0 +1,289 @@
+14 animations
+
+* Animation 0
+1 keyframes
+Frame	Duration
+0	2
+
+* Animation 1
+2 keyframes
+Frame	Duration
+1	2
+2	2
+
+* Animation 2
+1 keyframes
+Frame	Duration
+5	2
+
+* Animation 3
+2 keyframes
+Frame	Duration
+6	2
+7	2
+
+* Animation 4
+10 keyframes
+Frame	Duration
+10	2
+11	2
+12	1
+13	1
+12	1
+13	1
+12	1
+13	1
+12	1
+13	30
+
+* Animation 5
+128 keyframes
+Frame	Duration
+14	2
+15	2
+16	1
+17	1
+16	1
+17	1
+16	1
+17	1
+16	1
+17	1
+16	1
+17	1
+16	1
+17	1
+16	1
+17	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+18	1
+19	1
+20	1
+21	1
+22	1
+23	1
+24	1
+25	1
+22	1
+23	1
+24	1
+25	1
+22	1
+23	1
+24	1
+25	1
+22	1
+23	1
+24	1
+25	1
+22	1
+23	1
+24	1
+25	1
+26	1
+27	1
+28	1
+29	1
+26	1
+27	1
+28	1
+29	1
+26	1
+27	1
+28	1
+29	1
+26	1
+27	1
+28	1
+29	1
+26	1
+27	1
+28	1
+29	1
+30	1
+31	1
+32	1
+33	1
+30	1
+31	1
+32	1
+33	1
+30	1
+31	1
+32	1
+33	1
+34	1
+35	1
+34	2
+35	2
+34	1
+35	1
+34	2
+35	2
+34	1
+35	1
+34	2
+35	2
+34	2
+35	2
+34	3
+35	3
+34	4
+35	4
+34	5
+35	23
+
+* Animation 6
+4 keyframes
+Frame	Duration
+36	2
+37	2
+38	2
+39	2
+
+* Animation 7
+4 keyframes
+Frame	Duration
+40	2
+41	2
+42	2
+43	2
+
+* Animation 8
+4 keyframes
+Frame	Duration
+44	2
+45	2
+46	2
+47	2
+
+* Animation 9
+4 keyframes
+Frame	Duration
+48	2
+49	2
+50	2
+51	2
+
+* Animation 10
+19 keyframes
+Frame	Duration
+52	15
+52	3
+55	2
+54	2
+55	2
+54	2
+55	2
+52	10
+52	2
+55	2
+54	2
+55	2
+52	2
+52	2
+55	2
+54	2
+55	2
+54	2
+55	2
+
+* Animation 11
+28 keyframes
+Frame	Duration
+56	2
+56	2
+60	2
+61	2
+62	2
+61	2
+60	2
+57	2
+56	2
+57	2
+58	2
+57	2
+56	2
+57	2
+58	2
+57	2
+56	2
+57	2
+58	2
+57	2
+56	2
+57	2
+58	2
+57	2
+56	2
+57	2
+58	2
+57	2
+
+* Animation 12
+5 keyframes
+Frame	Duration
+64	15
+63	5
+64	9
+63	5
+64	25
+
+* Animation 13
+12 keyframes
+Frame	Duration
+65	2
+66	2
+67	2
+66	2
+65	2
+69	2
+68	2
+66	3
+65	3
+69	2
+68	2
+66	3
+
+Unused frames
+3
+4
+8
+9
+53
+59
