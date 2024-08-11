@@ -1,0 +1,88 @@
+8 animations
+
+* Animation 0
+1 keyframes
+Frame	Duration
+0	8
+
+* Animation 1
+4 keyframes
+Frame	Duration
+3	2
+4	2
+3	3
+4	2
+
+* Animation 2
+1 keyframes
+Frame	Duration
+7	8
+
+* Animation 3
+14 keyframes
+Frame	Duration
+11	2
+14	2
+15	2
+16	2
+12	1
+13	1
+17	1
+14	1
+15	2
+16	2
+11	2
+14	2
+15	2
+16	2
+
+* Animation 4
+1 keyframes
+Frame	Duration
+19	8
+
+* Animation 5
+2 keyframes
+Frame	Duration
+21	2
+22	2
+
+* Animation 6
+1 keyframes
+Frame	Duration
+24	8
+
+* Animation 7
+12 keyframes
+Frame	Duration
+27	2
+30	2
+27	2
+30	1
+30	1
+30	1
+27	1
+27	1
+27	1
+30	2
+27	2
+30	2
+
+Unused frames
+1
+2
+5
+6
+8
+9
+10
+18
+20
+23
+25
+26
+28
+29
+31
+32
+33
