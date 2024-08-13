@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<style type="text/css">
+:root {
+  font-family: sans-serif;
+}
+img {
+  border: 0;
+}
+th {
+  text-align: start;
+  white-space: nowrap;
+}
+th > a {
+  color: inherit;
+}
+table[order] > thead > tr > th {
+  cursor: pointer;
+}
+table[order] > thead > tr > th::after {
+  display: none;
+  width: .8em;
+  margin-inline-end: -.8em;
+  text-align: end;
+}
+table[order="asc"] > thead > tr > th::after {
+  content: "\2193"; /* DOWNWARDS ARROW (U+2193) */
+}
+table[order="desc"] > thead > tr > th::after {
+  content: "\2191"; /* UPWARDS ARROW (U+2191) */
+}
+table[order][order-by="0"] > thead > tr > th:first-child > a ,
+table[order][order-by="1"] > thead > tr > th:first-child + th > a ,
+table[order][order-by="2"] > thead > tr > th:first-child + th + th > a {
+  text-decoration: underline;
+}
+table[order][order-by="0"] > thead > tr > th:first-child::after ,
+table[order][order-by="1"] > thead > tr > th:first-child + th::after ,
+table[order][order-by="2"] > thead > tr > th:first-child + th + th::after {
+  display: inline-block;
+}
+table.remove-hidden > tbody > tr.hidden-object {
+  display: none;
+}
+td {
+  white-space: nowrap;
+}
+table.ellipsis {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+table.ellipsis > tbody > tr > td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* name */
+/* name */
+th:first-child {
+  padding-inline-end: 2em;
+}
+/* size */
+th:first-child + th {
+  padding-inline-end: 1em;
+}
+td:first-child + td {
+  text-align: end;
+  padding-inline-end: 1em;
+}
+/* date */
+td:first-child + td + td {
+  padding-inline-start: 1em;
+  padding-inline-end: .5em;
+}
+/* time */
+td:first-child + td + td + td {
+  padding-inline-start: .5em;
+}
+.symlink {
+  font-style: italic;
+}
+.dir ,
+.symlink ,
+.file {
+  margin-inline-start: 20px;
+}
+.dir::before ,
+.file > img {
+  margin-inline-end: 4px;
+  margin-inline-start: -20px;
+  max-width: 16px;
+  max-height: 16px;
+  vertical-align: middle;
+}
+.dir::before {
+  content: url(resource://content-accessible/html/folder.png);
+}
+</style>
+<link rel="stylesheet" media="screen, projection" type="text/css" href="chrome://global/skin/dirListing/dirListing.css">
+<script type="application/javascript">
+'use strict';
+var gTable, gOrderBy, gTBody, gRows, gUI_showHidden;
+document.addEventListener("DOMContentLoaded", function() {
+  gTable = document.getElementsByTagName("table")[0];
+  gTBody = gTable.tBodies[0];
+  if (gTBody.rows.length < 2)
+    return;
+  gUI_showHidden = document.getElementById("UI_showHidden");
+  var headCells = gTable.tHead.rows[0].cells,
+      hiddenObjects = false;
+  function rowAction(i) {
+    return function(event) {
+      event.preventDefault();
+      orderBy(i);
+    }
+  }
+  for (var i = headCells.length - 1; i >= 0; i--) {
+    var anchor = document.createElement("a");
+    anchor.href = "";
+    anchor.appendChild(headCells[i].firstChild);
+    headCells[i].appendChild(anchor);
+    headCells[i].addEventListener("click", rowAction(i), true);
+  }
+  if (gUI_showHidden) {
+    gRows = Array.from(gTBody.rows);
+    hiddenObjects = gRows.some(row => row.className == "hidden-object");
+  }
+  gTable.setAttribute("order", "");
+  if (hiddenObjects) {
+    gUI_showHidden.style.display = "block";
+    updateHidden();
+  }
+}, "false");
+function compareRows(rowA, rowB) {
+  var a = rowA.cells[gOrderBy].getAttribute("sortable-data") || "";
+  var b = rowB.cells[gOrderBy].getAttribute("sortable-data") || "";
+  var intA = +a;
+  var intB = +b;
+  if (a == intA && b == intB) {
+    a = intA;
+    b = intB;
+  } else {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+  }
+  if (a < b)
+    return -1;
+  if (a > b)
+    return 1;
+  return 0;
+}
+function orderBy(column) {
+  if (!gRows)
+    gRows = Array.from(gTBody.rows);
+  var order;
+  if (gOrderBy == column) {
+    order = gTable.getAttribute("order") == "asc" ? "desc" : "asc";
+  } else {
+    order = "asc";
+    gOrderBy = column;
+    gTable.setAttribute("order-by", column);
+    gRows.sort(compareRows);
+  }
+  gTable.removeChild(gTBody);
+  gTable.setAttribute("order", order);
+  if (order == "asc")
+    for (var i = 0; i < gRows.length; i++)
+      gTBody.appendChild(gRows[i]);
+  else
+    for (var i = gRows.length - 1; i >= 0; i--)
+      gTBody.appendChild(gRows[i]);
+  gTable.appendChild(gTBody);
+}
+function updateHidden() {
+  gTable.className = gUI_showHidden.getElementsByTagName("input")[0].checked ?
+                     "" :
+                     "remove-hidden";
+}
+</script>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAjFJREFUeNqsU8uOElEQPffR3XQ3ONASdBJCSBxHos5%2B3Bg3rvkCv8PElS78gPkO%2FATjQoUdO2ftrJiRh6aneTb9sOpC4weMN6lcuFV16pxDIfI8x12OYIDhcPiu2Wx%2B%2FHF5CW1Z6Jyegt%2FTNEWSJIjjGFEUIQxDrFYrWFSzXC4%2FdLvd95pRKpXKy%2BpRFZ7nwaWo1%2BsGnQG2260BKJfLKJVKGI1GEEJw7ateryd0v993W63WEwjgxfn5obGYzgCbzcaEbdsIggDj8Riu6z6iUk9SYZMSx8W0LMsM%2FSKK75xnJlIq80anQXdbEp0OhcPJ0eiaJnGRMEyyPDsAKKUM9clkYoDo3SZJzzSdp0VSKYmfV1co%2Bz580kw5KDIM8RbRfEnUf1HzxtQyMAGcaGruTKczMzEIaqhKifV6jd%2BzGQQB5llunF%2FM52BizC2K5sYPYvZcu653tjOM9O93wnYc08gmkgg4VAxixfqFUJT36AYBZGd6PJkFCZnnlBxMp38gqIgLpZB0y4Nph18lyWh5FFbrOSxbl3V4G%2BVB7T4ajYYxTyuLtO%2BCvWGgJE1Mc7JNsJEhvgw%2FQV4fo%2F24nbEsX2u1d5sVyn8sJO0ZAQiIYnFh%2BxrfLz%2Fj29cBS%2FO14zg3i8XigW3ZkErDtmKoeM%2BAJGRMnXeEPGKf0nCD1ydvkDzU9Jbc6OpR7WIw6L8lQ%2B4pQ1%2FlPF0RGM9Ns91Wmptk0GfB4EJkt77vXYj%2F8m%2B8y%2FkrwABHbz2H9V68DQAAAABJRU5ErkJggg%3D%3D">
+<title>https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/ 的索引</title>
+<!-- base href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/" -->
+</head>
+<body dir="ltr">
+<h1>https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/ 的索引</h1>
+<p id="UI_goUp"><a class="up" href="https://laubcdd.github.io/files/Ace_Attorney/">上層目錄</a></p>
+<p id="UI_showHidden" style="display:none"><label><input type="checkbox" checked="checked" onchange="updateHidden()">顯示隱藏物件</label></p>
+<table order="">
+ <thead>
+  <tr>
+   <th><a href="">名稱</a></th>
+   <th><a href="">大小</a></th>
+   <th colspan="2"><a href="">上次修改</a></th>
+  </tr>
+ </thead>
+ <tbody>
+<tr>
+ <td sortable-data="2deka-giggle(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-giggle(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-giggle(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="225800">221 KB</td>
+ <td sortable-data="1245362854000000">2009/6/19</td>
+ <td>上午 06:07:34</td>
+</tr><tr>
+ <td sortable-data="2deka-giggle(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-giggle(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-giggle(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="267196">261 KB</td>
+ <td sortable-data="1245362856000000">2009/6/19</td>
+ <td>上午 06:07:36</td>
+</tr><tr>
+ <td sortable-data="2deka-giggle(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-giggle(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-giggle(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="226963">222 KB</td>
+ <td sortable-data="1245362856000000">2009/6/19</td>
+ <td>上午 06:07:36</td>
+</tr><tr>
+ <td sortable-data="2deka-giggle(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-giggle(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-giggle(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="268809">263 KB</td>
+ <td sortable-data="1245362858000000">2009/6/19</td>
+ <td>上午 06:07:38</td>
+</tr><tr>
+ <td sortable-data="2deka-grr(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-grr(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-grr(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="79059">78 KB</td>
+ <td sortable-data="1245362848000000">2009/6/19</td>
+ <td>上午 06:07:28</td>
+</tr><tr>
+ <td sortable-data="2deka-grr(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-grr(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-grr(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="78747">77 KB</td>
+ <td sortable-data="1245362848000000">2009/6/19</td>
+ <td>上午 06:07:28</td>
+</tr><tr>
+ <td sortable-data="2deka-grr(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-grr(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-grr(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="390767">382 KB</td>
+ <td sortable-data="1245362850000000">2009/6/19</td>
+ <td>上午 06:07:30</td>
+</tr><tr>
+ <td sortable-data="2deka-grr(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-grr(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-grr(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="390918">382 KB</td>
+ <td sortable-data="1245362852000000">2009/6/19</td>
+ <td>上午 06:07:32</td>
+</tr><tr>
+ <td sortable-data="2deka-happy(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-happy(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-happy(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="41922">41 KB</td>
+ <td sortable-data="1245362858000000">2009/6/19</td>
+ <td>上午 06:07:38</td>
+</tr><tr>
+ <td sortable-data="2deka-happy(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-happy(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-happy(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="42179">42 KB</td>
+ <td sortable-data="1245362858000000">2009/6/19</td>
+ <td>上午 06:07:38</td>
+</tr><tr>
+ <td sortable-data="2deka-happy(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-happy(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-happy(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="349861">342 KB</td>
+ <td sortable-data="1245362860000000">2009/6/19</td>
+ <td>上午 06:07:40</td>
+</tr><tr>
+ <td sortable-data="2deka-happy(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-happy(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-happy(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="350638">343 KB</td>
+ <td sortable-data="1245362862000000">2009/6/19</td>
+ <td>上午 06:07:42</td>
+</tr><tr>
+ <td sortable-data="2deka-normal(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-normal(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-normal(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="74785">74 KB</td>
+ <td sortable-data="1245362836000000">2009/6/19</td>
+ <td>上午 06:07:16</td>
+</tr><tr>
+ <td sortable-data="2deka-normal(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-normal(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-normal(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="91466">90 KB</td>
+ <td sortable-data="1245362836000000">2009/6/19</td>
+ <td>上午 06:07:16</td>
+</tr><tr>
+ <td sortable-data="2deka-normal(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-normal(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-normal(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="75064">74 KB</td>
+ <td sortable-data="1245362836000000">2009/6/19</td>
+ <td>上午 06:07:16</td>
+</tr><tr>
+ <td sortable-data="2deka-normal(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-normal(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-normal(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="91920">90 KB</td>
+ <td sortable-data="1245362836000000">2009/6/19</td>
+ <td>上午 06:07:16</td>
+</tr><tr>
+ <td sortable-data="2deka-sad(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-sad(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-sad(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="74720">73 KB</td>
+ <td sortable-data="1245362852000000">2009/6/19</td>
+ <td>上午 06:07:32</td>
+</tr><tr>
+ <td sortable-data="2deka-sad(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-sad(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-sad(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="33638">33 KB</td>
+ <td sortable-data="1245362852000000">2009/6/19</td>
+ <td>上午 06:07:32</td>
+</tr><tr>
+ <td sortable-data="2deka-sad(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-sad(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-sad(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="74892">74 KB</td>
+ <td sortable-data="1245362852000000">2009/6/19</td>
+ <td>上午 06:07:32</td>
+</tr><tr>
+ <td sortable-data="2deka-sad(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-sad(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-sad(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="33745">33 KB</td>
+ <td sortable-data="1245362852000000">2009/6/19</td>
+ <td>上午 06:07:32</td>
+</tr><tr>
+ <td sortable-data="2deka-scratch(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-scratch(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-scratch(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="124202">122 KB</td>
+ <td sortable-data="1245506464000000">2009/6/20</td>
+ <td>下午 10:01:04</td>
+</tr><tr>
+ <td sortable-data="2deka-scratch(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-scratch(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-scratch(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="124513">122 KB</td>
+ <td sortable-data="1245506472000000">2009/6/20</td>
+ <td>下午 10:01:12</td>
+</tr><tr>
+ <td sortable-data="2deka-smirk(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-smirk(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-smirk(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="75643">74 KB</td>
+ <td sortable-data="1245362842000000">2009/6/19</td>
+ <td>上午 06:07:22</td>
+</tr><tr>
+ <td sortable-data="2deka-smirk(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-smirk(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-smirk(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="462369">452 KB</td>
+ <td sortable-data="1245362844000000">2009/6/19</td>
+ <td>上午 06:07:24</td>
+</tr><tr>
+ <td sortable-data="2deka-smirk(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-smirk(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-smirk(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="75674">74 KB</td>
+ <td sortable-data="1245362844000000">2009/6/19</td>
+ <td>上午 06:07:24</td>
+</tr><tr>
+ <td sortable-data="2deka-smirk(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-smirk(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-smirk(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="462364">452 KB</td>
+ <td sortable-data="1245362848000000">2009/6/19</td>
+ <td>上午 06:07:28</td>
+</tr><tr>
+ <td sortable-data="2deka-thinking(a).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-thinking(a).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-thinking(a).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="116018">114 KB</td>
+ <td sortable-data="1245362838000000">2009/6/19</td>
+ <td>上午 06:07:18</td>
+</tr><tr>
+ <td sortable-data="2deka-thinking(b).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-thinking(b).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-thinking(b).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="347321">340 KB</td>
+ <td sortable-data="1245362840000000">2009/6/19</td>
+ <td>上午 06:07:20</td>
+</tr><tr>
+ <td sortable-data="2deka-thinking(c).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-thinking(c).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-thinking(c).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="116778">115 KB</td>
+ <td sortable-data="1245362840000000">2009/6/19</td>
+ <td>上午 06:07:20</td>
+</tr><tr>
+ <td sortable-data="2deka-thinking(d).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/deka-thinking(d).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">deka-thinking(d).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="349469">342 KB</td>
+ <td sortable-data="1245362842000000">2009/6/19</td>
+ <td>上午 06:07:22</td>
+</tr><tr>
+ <td sortable-data="2gksheet-deka(safe).gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/gksheet-deka(safe).gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">gksheet-deka(safe).gif</a></td></tr></tbody></table></td>
+ <td sortable-data="392403">384 KB</td>
+ <td sortable-data="1245846432000000">2009/6/24</td>
+ <td>下午 08:27:12</td>
+</tr><tr>
+ <td sortable-data="2gksheetlil-deka.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/gksheetlil-deka.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">gksheetlil-deka.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="130988">128 KB</td>
+ <td sortable-data="1244949166000000">2009/6/14</td>
+ <td>上午 11:12:46</td>
+</tr><tr>
+ <td sortable-data="2lildeka-chestpound.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-chestpound.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-chestpound.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5030">5 KB</td>
+ <td sortable-data="1245322210000000">2009/6/18</td>
+ <td>下午 06:50:10</td>
+</tr><tr>
+ <td sortable-data="2lildeka-eek.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-eek.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-eek.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="6608">7 KB</td>
+ <td sortable-data="1245326764000000">2009/6/18</td>
+ <td>下午 08:06:04</td>
+</tr><tr>
+ <td sortable-data="2lildeka-huff.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-huff.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-huff.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3762">4 KB</td>
+ <td sortable-data="1245321726000000">2009/6/18</td>
+ <td>下午 06:42:06</td>
+</tr><tr>
+ <td sortable-data="2lildeka-laughs.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-laughs.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-laughs.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="10800">11 KB</td>
+ <td sortable-data="1245326572000000">2009/6/18</td>
+ <td>下午 08:02:52</td>
+</tr><tr>
+ <td sortable-data="2lildeka-object.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-object.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-object.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="6884">7 KB</td>
+ <td sortable-data="1245322488000000">2009/6/18</td>
+ <td>下午 06:54:48</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runeast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runeast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runeast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4455">5 KB</td>
+ <td sortable-data="1245321302000000">2009/6/18</td>
+ <td>下午 06:35:02</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runnorth.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runnorth.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runnorth.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3809">4 KB</td>
+ <td sortable-data="1245321036000000">2009/6/18</td>
+ <td>下午 06:30:36</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runnortheast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runnortheast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runnortheast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3916">4 KB</td>
+ <td sortable-data="1245321560000000">2009/6/18</td>
+ <td>下午 06:39:20</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runnorthwest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runnorthwest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runnorthwest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3912">4 KB</td>
+ <td sortable-data="1245321540000000">2009/6/18</td>
+ <td>下午 06:39:00</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runsouth.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runsouth.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runsouth.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5632">6 KB</td>
+ <td sortable-data="1245320888000000">2009/6/18</td>
+ <td>下午 06:28:08</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runsoutheast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runsoutheast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runsoutheast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5504">6 KB</td>
+ <td sortable-data="1245321170000000">2009/6/18</td>
+ <td>下午 06:32:50</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runsouthwest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runsouthwest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runsouthwest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5553">6 KB</td>
+ <td sortable-data="1245321154000000">2009/6/18</td>
+ <td>下午 06:32:34</td>
+</tr><tr>
+ <td sortable-data="2lildeka-runwest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-runwest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-runwest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4519">5 KB</td>
+ <td sortable-data="1245321292000000">2009/6/18</td>
+ <td>下午 06:34:52</td>
+</tr><tr>
+ <td sortable-data="2lildeka-saluteeast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-saluteeast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-saluteeast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5815">6 KB</td>
+ <td sortable-data="1245322754000000">2009/6/18</td>
+ <td>下午 06:59:14</td>
+</tr><tr>
+ <td sortable-data="2lildeka-salutewest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-salutewest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-salutewest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="6109">6 KB</td>
+ <td sortable-data="1245322638000000">2009/6/18</td>
+ <td>下午 06:57:18</td>
+</tr><tr>
+ <td sortable-data="2lildeka-scratch.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-scratch.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-scratch.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="10785">11 KB</td>
+ <td sortable-data="1245321882000000">2009/6/18</td>
+ <td>下午 06:44:42</td>
+</tr><tr>
+ <td sortable-data="2lildeka-sigh.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-sigh.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-sigh.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4515">5 KB</td>
+ <td sortable-data="1245326326000000">2009/6/18</td>
+ <td>下午 07:58:46</td>
+</tr><tr>
+ <td sortable-data="2lildeka-stomp.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-stomp.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-stomp.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4859">5 KB</td>
+ <td sortable-data="1245321648000000">2009/6/18</td>
+ <td>下午 06:40:48</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walkeast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walkeast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walkeast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4467">5 KB</td>
+ <td sortable-data="1245320492000000">2009/6/18</td>
+ <td>下午 06:21:32</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walknorth.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walknorth.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walknorth.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3978">4 KB</td>
+ <td sortable-data="1245320268000000">2009/6/18</td>
+ <td>下午 06:17:48</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walknortheast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walknortheast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walknortheast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3787">4 KB</td>
+ <td sortable-data="1245320706000000">2009/6/18</td>
+ <td>下午 06:25:06</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walknorthwest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walknorthwest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walknorthwest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="3780">4 KB</td>
+ <td sortable-data="1245320696000000">2009/6/18</td>
+ <td>下午 06:24:56</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walksouth.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walksouth.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walksouth.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5698">6 KB</td>
+ <td sortable-data="1245320170000000">2009/6/18</td>
+ <td>下午 06:16:10</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walksoutheast.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walksoutheast.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walksoutheast.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5183">6 KB</td>
+ <td sortable-data="1245320510000000">2009/6/18</td>
+ <td>下午 06:21:50</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walksouthwest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walksouthwest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walksouthwest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="5158">6 KB</td>
+ <td sortable-data="1245320382000000">2009/6/18</td>
+ <td>下午 06:19:42</td>
+</tr><tr>
+ <td sortable-data="2lildeka-walkwest.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-walkwest.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-walkwest.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4471">5 KB</td>
+ <td sortable-data="1245320484000000">2009/6/18</td>
+ <td>下午 06:21:24</td>
+</tr><tr>
+ <td sortable-data="2lildeka-whoop.gif"><table class="ellipsis"><tbody><tr><td><a class="file" href="https://laubcdd.github.io/files/Ace_Attorney/gksprites-deka/lildeka-whoop.gif"><img src="https://laubcdd.github.io/files/ico/Image.ico" alt="檔案:">lildeka-whoop.gif</a></td></tr></tbody></table></td>
+ <td sortable-data="4095">4 KB</td>
+ <td sortable-data="1245322042000000">2009/6/18</td>
+ <td>下午 06:47:22</td>
+</tr></tbody></table>
+</body></html>
