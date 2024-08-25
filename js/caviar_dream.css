@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Caviar Dreams';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Caviar Dreams'), url('https://fonts.cdnfonts.com/s/77/CaviarDreams.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Caviar Dreams';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Caviar Dreams'), url('https://fonts.cdnfonts.com/s/77/CaviarDreamsItalic.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Caviar Dreams';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Caviar Dreams'), url('https://fonts.cdnfonts.com/s/77/CaviarDreams_Bold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Caviar Dreams';
+    font-style: italic;
+    font-weight: 500;
+    src: local('Caviar Dreams'), url('https://fonts.cdnfonts.com/s/77/CaviarDreams_BoldItalic.woff') format('woff');
+  }

@@ -1,0 +1,101 @@
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}
+/*网页尺寸*/
+
+.button {
+  border-radius: 4px;
+    background-color:#0d548e;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+   cursor: pointer;
+    font-size: 25px;
+  }     
+/*普通按钮Sccript*/
+
+.button_disabled {
+  border-radius: 4px;
+    background-color:#707070;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+   cursor: pointer;
+    font-size: 25px;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+  }     
+/*普通按钮DISABLED Sccript*/
+
+.button_sidenav {
+  border-radius: 4px;
+    background-color:#334;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+   cursor: pointer;
+    font-size: 25px;
+  }     
+/*新版导航列按钮格式*/
+
+
+
+  /*本Script为共用导航列！*/
+  .active {
+    background-color: #2468d6;
+  }
+  /*当前页面底色*/
+
+
+
+
+
+  /*本导航列为旧横向导航列！*/
+
+ul {
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #334;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+/*导航列底色格式*/
+
+li {
+  float: left;
+}
+/*导航列默认向左*/
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/*按钮文字颜色*/
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+/*非当前页面底色*/
+
+
+.Redir{
+color: #464646;
+padding: 20px;
+font-size: 30px;
+border: none;
+cursor: pointer;
+}
+/*点击按钮底色*/
+
+
